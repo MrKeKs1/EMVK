@@ -54,7 +54,22 @@
         </div>
     </div>
     <div id="unity-warning"> </div>
+    <style>
+        #unity-logo {
+            width: 200px;
+            height: 200px;
+        }
 
+        #unity-progress-bar-empty {
+            margin-top: 40%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #unity-progress-bar-full {
+            transition: width 0.5s;
+        }
+    </style>
 
     <script>
         // Отправляет событие инициализации нативному клиенту
@@ -66,7 +81,7 @@
                     // Предзагруженная реклама есть.
 
                     // Теперь можно создать кнопку
-                    // "Прокачать героя за рекламу".   
+                    // "Прокачать героя за рекламу".
                     // ...
 
                 } else {
@@ -80,11 +95,11 @@
             vkBridge.send('VKWebAppShowNativeAds', { ad_format: 'reward' })
                 .then((data) => {
                     if (data.result) // Успех
-                    { 
-                    myGameInstance.SendMessage('MainCamera', 'GetSolution');
-                    console.log('Реклама показана');
+                    {
+                        myGameInstance.SendMessage('MainCamera', 'GetSolution');
+                        console.log('Реклама показана');
                     }
-                    else // Ошибка 
+                    else // Ошибка
                         console.log('Ошибка при показе');
                 })
                 .catch((error) => { console.log(error); /* Ошибка */ });
@@ -172,6 +187,19 @@
 
             container.className = "unity-mobile";
             canvas.className = "unity-mobile";
+
+            //vkBridge.send('VKWebAppShowBannerAd', {
+            //    banner_location: 'bottom'
+            //})
+            //    .then((data) => {
+            //        if (data.result) {
+            //            // Баннерная реклама отобразилась
+            //        }
+            //    })
+            //    .catch((error) => {
+            //        // Ошибка
+            //        console.log(error);
+            //    });
 
             // To lower canvas resolution on mobile devices to gain some
             // performance, uncomment the following line:
